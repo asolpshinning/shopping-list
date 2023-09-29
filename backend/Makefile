@@ -94,7 +94,7 @@ import-package-update:
 			${DOCKER} ${LNXOS} sed -i 's/package openapi/package handlers/' api/handlers/$${f} ; \
 			${DOCKER} ${LNXOS} echo 'go/'$${f} >> api/gen/.openapi-generator-ignore ; \
 			${DOCKER} ${LNXOS} sed -i 's/package openapi/package handlers/' api/handlers/$${f} ; \
-			${DOCKER} ${LNXOS} sed -i 's~import (~import (. "github.com/asolpshinning/go-template/api/gen"~' api/handlers/$${f} ; \
+			${DOCKER} ${LNXOS} sed -i 's~import (~import (. "github.com/asolpshinning/shopping-list/backend/api/gen"~' api/handlers/$${f} ; \
 		fi \
 	done
 
