@@ -1,0 +1,240 @@
+openapi: 3.0.0
+info:
+  description: >-
+    Shopping List Service
+  version: 0.1.0
+  title: Shopping List Service for adding, editing and removing planned shopping items
+tags:
+  - name: Shopping
+    description: All actions to save, edit and remove items from shopping list
+  - name: Miscellaneous
+    description: Extra routes not related to core features
+
+paths:
+  /shopping/items:
+    get:
+      tags:
+        - Shopping
+      operationId: GetItems
+      summary: Get the items of the shopping list
+      description: Get all the items of the shopping list both which have been purchased and not yet purchased
+      parameters: []
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ShoppingItem'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      tags:
+        - Shopping
+      operationId: PostItem
+      summary: Post an item to the shopping list
+      description: Post an item to the shopping list
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShoppingItem'
+      responses:
+        '200': 
+          description: Item added successfully
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg: 
+                    type: string
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /shopping/items/{itemID}: 
+    patch:
+      tags:
+        - Shopping
+      operationId: PatchItem
+      summary: Update an existing item in the shopping list
+      description: Update an existing item in the shopping list by providing the itemID and the fields to be updated
+      parameters:
+        - name: itemID
+          in: path
+          description: ID of the shopping item to update
+          required: true
+          schema:
+            type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: 
+                  type: string
+                description:
+                  type: string
+                quantity:
+                  type: number
+                purchased:
+                  type: boolean
+      responses:
+        '200':
+          description: Item updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShoppingItem'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Item not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      tags:
+        - Shopping
+      operationId: DeleteItem
+      summary: Delete an existing item from the shopping list
+      description: Delete an existing item from the shopping list by providing the itemID
+      parameters:
+        - name: itemID
+          in: path
+          description: ID of the shopping item to delete
+          required: true
+          schema:
+            type: number
+      responses:
+        '204':
+          description: Item deleted successfully
+          content: {}
+        '401':
+          description: Unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Item not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+
+  /health:
+    get:
+      tags:
+        - Miscellaneous
+      operationId: GetHealth
+      summary: Check if the application is running
+      description: A simple route just to make sure that the service is running
+      security: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    example: "OK"
+components:
+  requestBodies: {}
+  schemas:
+    ShoppingItem:
+      title: ShoppingItem
+      description: Shopping Item
+      type: object
+      properties:
+        id:
+          type: number
+        name: 
+          type: string
+        description:
+          type: string
+        quantity:
+          type: number
+        purchased:
+          type: boolean
+    Error:
+      title: Error
+      description: Error
+      type: object
+      properties:
+        message:
+          type: string
