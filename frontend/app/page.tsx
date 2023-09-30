@@ -1,95 +1,65 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client'
+import Box from '@mui/material/Box';
+import ShoppingList from '../components/ShoppingList';
+import { ItemModal, DeleteItemModal, Spinner, EmptyList } from '.././components';
+import useShoppingData from '@/hooks/useShoppingData';
+import useShoppingFunctions from '@/hooks/useShoppingFunctions';
+import { Button } from '@mui/material';
 
-export default function Home() {
+const Home = () => {
+
+  const { shoppingData, handleItemSaveData, handleConfirmDeleteData, handleMarkItemPurchased } = useShoppingData()
+  const {
+    shoppingState,
+    handleClickAddItem,
+    handleClickEdit,
+    handleClickDelete,
+    handleItemFieldUpdate,
+    handleItemModalClose,
+    handleDeleteModalClose,
+  } = useShoppingFunctions()
+
+  const handleItemSave = () => {
+    handleItemSaveData(shoppingState);
+    handleItemModalClose();
+  }
+
+  const handleConfirmDelete = () => {
+    handleConfirmDeleteData(shoppingState);
+    handleDeleteModalClose();
+  }
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <Box className="shopping-list-container">
+      <EmptyList reveal={!shoppingData.items && !shoppingData.loading} onClickAddItem={() => handleClickAddItem(shoppingData)}>
+        <Button onClick={() => handleClickAddItem(shoppingData)}>Add Item</Button>
+      </EmptyList>
+      <Spinner loading={shoppingData.loading} />
+      <ShoppingList
+        reveal={shoppingData.items && !shoppingData.loading}
+        data={shoppingData}
+        state={shoppingState}
+        onClickAddItem={handleClickAddItem}
+        onClickEdit={handleClickEdit}
+        onMarkedAsPurchased={handleMarkItemPurchased}
+        onClickDelete={handleClickDelete}
+      />
+      <ItemModal
+        actionType={shoppingState.itemActionType}
+        reveal={shoppingState.isItemModalOpen}
+        onExit={handleDeleteModalClose}
+        item={shoppingState.currentItem}
+        validations={shoppingState.currentItemValidations}
+        onFieldChange={handleItemFieldUpdate}
+        onSave={handleItemSave}
+      />
+      <DeleteItemModal
+        open={shoppingState.isDeleteModalOpen}
+        onExit={handleDeleteModalClose}
+        onConfirm={handleConfirmDelete}
+      />
+    </Box>
+  );
+};
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
-}
+export default Home;
