@@ -7,6 +7,7 @@ import (
 )
 
 var (
+	DB                  = "pg"
 	NUM_ALLOWED_ORIGINS = "0" // Get("NUM_ALLOWED_ORIGINS")
 )
 
