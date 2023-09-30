@@ -13,7 +13,8 @@ var (
 	DB_HOST           = "localhost:5432" // Get("DB_HOST")
 	DB_SHOPPING_TABLE = "shopping_list"  // Get("DB_REG_TABLE")
 
-	NUM_ALLOWED_ORIGINS = "0" // Get("NUM_ALLOWED_ORIGINS")
+	SERVER_PORT         = "8080" // Get("SERVER_PORT")
+	NUM_ALLOWED_ORIGINS = "0"    // Get("NUM_ALLOWED_ORIGINS")
 )
 
 func ALLOWED_ORIGIN_(i int) string {
