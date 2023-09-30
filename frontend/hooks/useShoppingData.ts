@@ -28,7 +28,7 @@ const useShoppingData = () => {
         // axiosEditCurrentItem(state.currentItem)
         // axiosAddNewItem(state.currentItem)
         // only if this succeeds, then do the following:
-        const updatedShoppingItems = [...shoppingData.items];
+        const updatedShoppingItems = shoppingData.items ? [...shoppingData.items] : [];
         if (state.itemActionType === 'add' && state.currentItem) {
             // Since there is no current item, add new item to the array
             updatedShoppingItems.push(state.currentItem);

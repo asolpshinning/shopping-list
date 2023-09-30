@@ -3,12 +3,17 @@ import Box from '@mui/material/Box';
 import ShoppingList from '../components/ShoppingList';
 import { ItemModal, DeleteItemModal, Spinner, EmptyList } from '.././components';
 import useShoppingData from '@/hooks/useShoppingData';
-import useShoppingFunctions from '@/hooks/useShoppingFunctions';
+import useShoppingState from '@/hooks/useShoppingState';
 import { Button } from '@mui/material';
 
 const Home = () => {
 
-  const { shoppingData, handleItemSaveData, handleConfirmDeleteData, handleMarkItemPurchased } = useShoppingData()
+  const {
+    shoppingData,
+    handleItemSaveData,
+    handleConfirmDeleteData,
+    handleMarkItemPurchased } = useShoppingData()
+
   const {
     shoppingState,
     handleClickAddItem,
@@ -16,8 +21,7 @@ const Home = () => {
     handleClickDelete,
     handleItemFieldUpdate,
     handleItemModalClose,
-    handleDeleteModalClose,
-  } = useShoppingFunctions()
+    handleDeleteModalClose } = useShoppingState()
 
   const handleItemSave = () => {
     handleItemSaveData(shoppingState);
@@ -31,12 +35,12 @@ const Home = () => {
 
   return (
     <Box className="shopping-list-container">
-      <EmptyList reveal={!shoppingData.items && !shoppingData.loading} onClickAddItem={() => handleClickAddItem(shoppingData)}>
+      <EmptyList reveal={(!shoppingData.items || (shoppingData.items && shoppingData.items.length === 0)) && !shoppingData.loading} onClickAddItem={() => handleClickAddItem(shoppingData)}>
         <Button onClick={() => handleClickAddItem(shoppingData)}>Add Item</Button>
       </EmptyList>
       <Spinner loading={shoppingData.loading} />
       <ShoppingList
-        reveal={shoppingData.items && !shoppingData.loading}
+        reveal={shoppingData.items && !shoppingData.loading && shoppingData.items.length > 0}
         data={shoppingData}
         state={shoppingState}
         onClickAddItem={handleClickAddItem}

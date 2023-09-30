@@ -97,7 +97,7 @@ const ItemModal: React.FC<ItemModalProps> = ({
                             <DropDownSelect
                                 onSelect={handleFieldUpdate}
                                 value={item?.quantity}
-                                amount={item?.quantity}
+                                amount={2 * (item?.quantity as number) || 5}
                                 error={validations?.amount?.error}
                                 errorText={validations?.amount?.errorText}
                             />

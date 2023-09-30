@@ -1,7 +1,7 @@
 import { ShoppingData, ShoppingItem, ShoppingState } from '@/types/shopping';
 import { useState, ChangeEvent } from 'react';
 
-export const useShoppingFunctions = () => {
+export const useShoppingState = () => {
     const [shoppingState, setShoppingState] = useState<ShoppingState>({
         isItemModalOpen: false,
         isDeleteModalOpen: false,
@@ -13,7 +13,7 @@ export const useShoppingFunctions = () => {
     const handleClickAddItem = (data: ShoppingData) => {
         // open add item modal
         let currentItem: ShoppingItem = {
-            id: data.items.length, // this does not affect the backend, but is used for rendering
+            id: data.items ? data.items.length : 0, // this does not affect the backend, but is used for rendering
             name: '',
             description: '',
             quantity: 0,
@@ -79,4 +79,4 @@ export const useShoppingFunctions = () => {
     };
 };
 
-export default useShoppingFunctions;
+export default useShoppingState;
