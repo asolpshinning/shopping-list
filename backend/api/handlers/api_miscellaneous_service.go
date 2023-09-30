@@ -11,10 +11,9 @@ package handlers
 
 import (
 	"context"
-	"errors"
 	"net/http"
 
-	. "github.com/asolpshinning/shopping-list/backend/api/gen"
+	g "github.com/asolpshinning/shopping-list/backend/api/gen"
 )
 
 // MiscellaneousAPIService is a service that implements the logic for the MiscellaneousAPIServicer
@@ -24,17 +23,11 @@ type MiscellaneousAPIService struct {
 }
 
 // NewMiscellaneousAPIService creates a default api service
-func NewMiscellaneousAPIService() MiscellaneousAPIServicer {
+func NewMiscellaneousAPIService() g.MiscellaneousAPIServicer {
 	return &MiscellaneousAPIService{}
 }
 
 // GetHealth - Check if the application is running
-func (s *MiscellaneousAPIService) GetHealth(ctx context.Context) (ImplResponse, error) {
-	// TODO - update GetHealth with the required logic for this service method.
-	// Add api_miscellaneous_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
-
-	// TODO: Uncomment the next line to return response Response(200, GetHealth200Response{}) or use other options such as http.Ok ...
-	// return Response(200, GetHealth200Response{}), nil
-
-	return Response(http.StatusNotImplemented, nil), errors.New("GetHealth method not implemented")
+func (s *MiscellaneousAPIService) GetHealth(ctx context.Context) (g.ImplResponse, error) {
+	return g.Response(http.StatusOK, g.GetHealth200Response{Msg: "OK"}), nil
 }
