@@ -6,3 +6,9 @@ export type ShoppingItem = {
     quantity: number;
     purchased: boolean;
 };
+
+// Define the type for validations for item modal
+export type Validations = {
+    name?: { error: boolean; errorText: string };
+    amount?: { error: boolean; errorText: string };
+}
