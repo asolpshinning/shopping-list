@@ -7,7 +7,12 @@ import (
 )
 
 var (
-	DB                  = "pg"
+	DB                = "testdb"         // Get("DB")
+	DB_USER           = "testuser"       // Get("DB_USER")
+	DB_PASSWORD       = "testpassword"   // Get("DB_PASSWORD")
+	DB_HOST           = "localhost:5432" // Get("DB_HOST")
+	DB_SHOPPING_TABLE = "shopping_list"  // Get("DB_REG_TABLE")
+
 	NUM_ALLOWED_ORIGINS = "0" // Get("NUM_ALLOWED_ORIGINS")
 )
 
