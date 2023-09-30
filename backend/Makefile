@@ -1,4 +1,4 @@
-GO = golang:1.20 go
+GO = golang:1.18 go
 LNXOS = alpine:3.7
 BINARY = ./bin/service
 MAIN = ./main.go
