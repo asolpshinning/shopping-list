@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import axios from "axios";
-import { ShoppingData, ShoppingState } from "@/types/shopping";
+import { ShoppingData, ShoppingItem, ShoppingState } from "@/types/shopping";
 
 // For fetching data from the backend and updating the shopping data for rendering
 const useShoppingData = () => {
@@ -51,14 +51,13 @@ const useShoppingData = () => {
         setShoppingData({ ...shoppingData, items: updatedShoppingItems });
     };
 
-    const handleMarkItemPurchased = (e: ChangeEvent<HTMLInputElement>, state: ShoppingState) => {
+    const handleMarkItemPurchased = (item: ShoppingItem) => {
         // Implement mark item purchased axios logic here
         // axiosMarkItemPurchased(state.currentItem)
         // only if this succeeds, then do the following:
         const updatedShoppingItems = [...shoppingData.items];
-        if (state.currentItem) {
-            updatedShoppingItems[state.currentItem.id].purchased = e.target.checked;
-        }
+        let key = item.id;
+        updatedShoppingItems[key].purchased = !updatedShoppingItems[key].purchased;
         setShoppingData({ ...shoppingData, items: updatedShoppingItems });
     };
 

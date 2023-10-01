@@ -12,7 +12,7 @@ import { ChangeEvent } from 'react';
 type ListItemProps = {
     primaryText: string;
     secondaryText: string;
-    selected: boolean;
+    checked: boolean;
     onSelect: (e: ChangeEvent<HTMLInputElement>, checked: boolean) => void;
     onEdit: () => void;
     onDelete: () => void;
@@ -21,7 +21,7 @@ type ListItemProps = {
 const ListItem: React.FC<ListItemProps> = ({
     primaryText = '',
     secondaryText = '',
-    selected = false,
+    checked = false,
     onSelect,
     onEdit,
     onDelete,
@@ -40,7 +40,7 @@ const ListItem: React.FC<ListItemProps> = ({
             }
         >
             <ListItemIcon>
-                <Checkbox onChange={onSelect} checked={selected} />
+                <Checkbox onChange={onSelect} checked={checked} />
             </ListItemIcon>
             <ListItemText
                 primary={

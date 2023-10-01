@@ -33,6 +33,9 @@ const Home = () => {
     handleDeleteModalClose();
   }
 
+
+
+
   return (
     <Box className="shopping-list-container">
       <EmptyList reveal={(!shoppingData.items || (shoppingData.items && shoppingData.items.length === 0)) && !shoppingData.loading} onClickAddItem={() => handleClickAddItem(shoppingData)}>
@@ -42,7 +45,6 @@ const Home = () => {
       <ShoppingList
         reveal={shoppingData.items && !shoppingData.loading && shoppingData.items.length > 0}
         data={shoppingData}
-        state={shoppingState}
         onClickAddItem={handleClickAddItem}
         onClickEdit={handleClickEdit}
         onMarkedAsPurchased={handleMarkItemPurchased}
