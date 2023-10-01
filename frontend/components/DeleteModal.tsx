@@ -13,20 +13,29 @@ interface DeleteItemModalProps {
 const DeleteItemModal: FC<DeleteItemModalProps> = ({ open, onExit, onConfirm }) => {
     return (
         <Modal open={open} onClose={onExit}>
-            <Box>
-                <Box>
-                    <Typography>
+            <Box sx={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                bgcolor: 'background.paper',
+                boxShadow: 24,
+                p: 4,
+                borderRadius: 2
+            }}>
+                <Box sx={{ mb: 2, width: 400, paddingBottom: 8 }}>
+                    <Typography sx={{ color: 'black', fontWeight: 'bold' }}>
                         Delete Item?
                     </Typography>
-                    <Typography>
+                    <Typography sx={{ color: 'grey.700' }}>
                         Are you sure you want to delete this item? This cannot be undone.
                     </Typography>
                 </Box>
-                <Box>
+                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                     <Button variant="text" onClick={onExit}>
                         Cancel
                     </Button>
-                    <Button onClick={onConfirm}>
+                    <Button variant="contained" onClick={onConfirm}>
                         Delete
                     </Button>
                 </Box>

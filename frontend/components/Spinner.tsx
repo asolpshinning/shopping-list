@@ -4,11 +4,11 @@ import Box from '@mui/material/Box';
 const Spinner = (props: { loading: boolean }) => {
     if (props.loading) {
         return (
-            <Box>
+            <Box sx={{ display: 'flex', marginTop: 14 }}>
                 <CircularProgress
                     aria-label="loading"
-                    size={120}
-                    thickness={5}
+                    size={100}
+                    thickness={2}
                 />
             </Box>
         );

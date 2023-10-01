@@ -24,7 +24,7 @@ const ShoppingList: React.FC<ShoppingListProps> = ({
 }): ReactElement | null => {
     return (
         reveal ? (
-            <Box>
+            <Box sx={{ display: 'flex', alignIntems: 'center', justifyContent: 'center' }}>
 
                 <Box>
                     <Typography>

@@ -5,6 +5,7 @@ import { ItemModal, DeleteItemModal, Spinner, EmptyList } from '.././components'
 import useShoppingData from '@/hooks/useShoppingData';
 import useShoppingState from '@/hooks/useShoppingState';
 import { Button } from '@mui/material';
+import Header from '@/components/Header';
 
 const Home = () => {
 
@@ -37,33 +38,36 @@ const Home = () => {
 
 
   return (
-    <Box className="shopping-list-container">
-      <EmptyList reveal={(!shoppingData.items || (shoppingData.items && shoppingData.items.length === 0)) && !shoppingData.loading} onClickAddItem={() => handleClickAddItem(shoppingData)}>
-        <Button onClick={() => handleClickAddItem(shoppingData)}>Add Item</Button>
-      </EmptyList>
-      <Spinner loading={shoppingData.loading} />
-      <ShoppingList
-        reveal={shoppingData.items && !shoppingData.loading && shoppingData.items.length > 0}
-        data={shoppingData}
-        onClickAddItem={handleClickAddItem}
-        onClickEdit={handleClickEdit}
-        onMarkedAsPurchased={handleMarkItemPurchased}
-        onClickDelete={handleClickDelete}
-      />
-      <ItemModal
-        actionType={shoppingState.itemActionType}
-        reveal={shoppingState.isItemModalOpen}
-        onExit={handleDeleteModalClose}
-        item={shoppingState.currentItem}
-        validations={shoppingState.currentItemValidations}
-        onFieldChange={handleItemFieldUpdate}
-        onSave={handleItemSave}
-      />
-      <DeleteItemModal
-        open={shoppingState.isDeleteModalOpen}
-        onExit={handleDeleteModalClose}
-        onConfirm={handleConfirmDelete}
-      />
+    <Box>
+      <Header />
+      <Box sx={{ display: 'flex', alignIntems: 'center', justifyContent: 'center' }}>
+        <EmptyList reveal={(!shoppingData.items || (shoppingData.items && shoppingData.items.length === 0)) && !shoppingData.loading} onClickAddItem={() => handleClickAddItem(shoppingData)}>
+          <Button variant='contained' onClick={() => handleClickAddItem(shoppingData)} sx={{ marginTop: 2 }}>Add Your First Item</Button>
+        </EmptyList>
+        <Spinner loading={shoppingData.loading} />
+        <ShoppingList
+          reveal={shoppingData.items && !shoppingData.loading && shoppingData.items.length > 0}
+          data={shoppingData}
+          onClickAddItem={handleClickAddItem}
+          onClickEdit={handleClickEdit}
+          onMarkedAsPurchased={handleMarkItemPurchased}
+          onClickDelete={handleClickDelete}
+        />
+        <ItemModal
+          actionType={shoppingState.itemActionType}
+          reveal={shoppingState.isItemModalOpen}
+          onExit={handleDeleteModalClose}
+          item={shoppingState.currentItem}
+          validations={shoppingState.currentItemValidations}
+          onFieldChange={handleItemFieldUpdate}
+          onSave={handleItemSave}
+        />
+        <DeleteItemModal
+          open={shoppingState.isDeleteModalOpen}
+          onExit={handleDeleteModalClose}
+          onConfirm={handleConfirmDelete}
+        />
+      </Box>
     </Box>
   );
 };
