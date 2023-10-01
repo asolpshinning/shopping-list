@@ -13,19 +13,17 @@ export const useShoppingState = () => {
     const handleClickAddItem = (data: ShoppingData) => {
         // open add item modal
         let currentItem: ShoppingItem = {
-            id: data.items ? data.items.length : 0, // this does not affect the backend, but is used for rendering
+            id: data.items ? data.items.length : 1, // this does not affect the backend, but is used for rendering
             name: '',
             description: '',
             quantity: 0,
             purchased: false,
         };
         setShoppingState({ ...shoppingState, itemActionType: 'add', isItemModalOpen: true, currentItem, comment: "addItemButtonClicked" });
-        console.log(shoppingState)
     };
 
     const handleClickEdit = (currentItem: ShoppingItem) => {
         setShoppingState({ ...shoppingState, itemActionType: 'edit', currentItem, isItemModalOpen: true, comment: "clickEditButton" });
-        console.log(shoppingState)
     };
 
 
@@ -50,7 +48,6 @@ export const useShoppingState = () => {
             updatedItem.name = value;
         }
         setShoppingState({ ...shoppingState, currentItem: updatedItem as ShoppingItem, comment: "itemFieldUpdated" });
-        console.log(shoppingState)
     };
 
     const handleItemModalClose = () => {
@@ -60,7 +57,6 @@ export const useShoppingState = () => {
             isItemModalOpen: false,
             comment: "itemModalClosed"
         });
-        console.log(shoppingState)
     }
 
     const handleDeleteModalClose = () => {

@@ -30,7 +30,7 @@ const ListItem: React.FC<ListItemProps> = ({
     return (
         <MuiListItem
             secondaryAction={
-                <Box>
+                <Box sx={{ display: 'flex' }}>
                     <ListItemButton>
                         <EditIcon onClick={onEdit} />
                     </ListItemButton>
