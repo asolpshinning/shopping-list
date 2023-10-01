@@ -24,15 +24,14 @@ const ShoppingList: React.FC<ShoppingListProps> = ({
 }): ReactElement | null => {
     return (
         reveal ? (
-            <Box sx={{ display: 'flex', alignIntems: 'center', justifyContent: 'center' }}>
-
-                <Box>
-                    <Typography>
+            <Box sx={{ width: '100%', paddingLeft: 20, paddingRight: 11, paddingTop: 4.5 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', marginBottom: 1.5 }}>
+                    <Typography sx={{ color: 'black', fontFamily: 'sans-serif', fontSize: 18, fontWeight: 600 }}>
                         Your Items
                     </Typography>
                     <Button onClick={() => onClickAddItem(data)}>Add Item</Button>
                 </Box>
-                <Box component="ul">
+                <Box component="ul" sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
                     {data.items.map(item => {
                         return (
                             <ListItem

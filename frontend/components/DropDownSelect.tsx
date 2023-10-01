@@ -42,7 +42,7 @@ const DropDownSelect: React.FC<DropDownSelectProps> = ({
                 id="item-amount-select"
                 value={String(selValue)}
                 inputProps={{
-                    sx: { color: "#9CA8B4" },
+                    sx: { color: 'black' },
                     name: 'quantity',
                 }}
                 onChange={handleChange}

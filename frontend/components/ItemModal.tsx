@@ -10,6 +10,7 @@ import Checkbox from '@mui/material/Checkbox';
 import DropDownSelect from './DropDownSelect';
 import Button from './Button'
 import { ShoppingItem, Validations } from '@/types/shopping';
+import styles from '@/styles/itemModal';
 
 interface ItemModalProps {
     actionType: 'add' | 'edit';
@@ -23,7 +24,7 @@ interface ItemModalProps {
 
 const actionTypeLabels = {
     primaryButton: {
-        add: 'Add Task',
+        add: 'Add Item',
         edit: 'Save Item',
     },
     primaryText: {
@@ -31,8 +32,8 @@ const actionTypeLabels = {
         edit: 'Edit an Item',
     },
     secondaryText: {
-        add: 'Add your new item below',
-        edit: 'Edit your item below',
+        add: 'Add new item below',
+        edit: 'Edit item below',
     },
 };
 
@@ -51,16 +52,15 @@ const ItemModal: React.FC<ItemModalProps> = ({
     return (
         <>
             <Modal open={reveal} onClose={onExit}>
-                <Box>
-                    <Box>
-                        Shopping List
-                        <LastPageIcon />
-                    </Box>
-                    <Box>
-                        <Typography>
+                <Box sx={styles.container}>
+                    <Box sx={styles.header}>
+                        <Typography sx={{ fontFamily: 'monospace' }}>
                             {actionTypeLabels.primaryText[actionType]}
                         </Typography>
-                        <Typography>
+                        <LastPageIcon sx={styles.headerIcon} onClick={onExit} />
+                    </Box>
+                    <Box sx={styles.padding}>
+                        <Typography sx={styles.secondaryText}>
                             {actionTypeLabels.secondaryText[actionType]}
                         </Typography>
                         <Box>
@@ -73,6 +73,7 @@ const ItemModal: React.FC<ItemModalProps> = ({
                                 fullWidth
                                 value={item?.name}
                                 inputProps={{
+                                    sx: styles.inputText,
                                     name: 'name',
                                 }}
                             />
@@ -88,9 +89,10 @@ const ItemModal: React.FC<ItemModalProps> = ({
                                     inputProps={{
                                         maxLength: 100,
                                         name: 'description',
+                                        sx: styles.inputText,
                                     }}
                                 />
-                                <Box>
+                                <Box sx={styles.counter}>
                                     {`${item?.description.length}/100`}
                                 </Box>
                             </Box>
@@ -103,7 +105,7 @@ const ItemModal: React.FC<ItemModalProps> = ({
                             />
                             {actionType === 'edit' ? (
                                 <FormGroup>
-                                    <FormControlLabel
+                                    <FormControlLabel sx={styles.checkbox}
                                         control={
                                             <Checkbox
                                                 checked={item?.purchased}

@@ -8,6 +8,7 @@ import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { ChangeEvent } from 'react';
+import styles from '@/styles/listItem';
 
 type ListItemProps = {
     primaryText: string;
@@ -44,12 +45,12 @@ const ListItem: React.FC<ListItemProps> = ({
             </ListItemIcon>
             <ListItemText
                 primary={
-                    <Typography>
+                    <Typography sx={checked ? styles.checkedPrimaryText : styles.primaryText}>
                         {primaryText}
                     </Typography>
                 }
                 secondary={
-                    <Typography>
+                    <Typography sx={checked ? styles.checkedSecondaryText : styles.secondaryText}>
                         {secondaryText}
                     </Typography>
                 }

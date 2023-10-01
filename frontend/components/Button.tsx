@@ -4,7 +4,7 @@ type ButtonVariant = 'contained' | 'text';
 
 const containedButtonStyle = {
     textTransform: 'unset',
-    fontFamily: 'Nunito',
+    fontFamily: 'sans-serif',
     fontWeight: 600,
     backgroundColor: 'blue',
 };

@@ -1,11 +1,9 @@
 'use client'
 import Box from '@mui/material/Box';
-import ShoppingList from '../components/ShoppingList';
-import { ItemModal, DeleteItemModal, Spinner, EmptyList } from '.././components';
+import { ItemModal, DeleteItemModal, Spinner, EmptyList, Header, ShoppingList } from '@/components';
 import useShoppingData from '@/hooks/useShoppingData';
 import useShoppingState from '@/hooks/useShoppingState';
 import { Button } from '@mui/material';
-import Header from '@/components/Header';
 
 const Home = () => {
 
@@ -56,7 +54,7 @@ const Home = () => {
         <ItemModal
           actionType={shoppingState.itemActionType}
           reveal={shoppingState.isItemModalOpen}
-          onExit={handleDeleteModalClose}
+          onExit={handleItemModalClose}
           item={shoppingState.currentItem}
           validations={shoppingState.currentItemValidations}
           onFieldChange={handleItemFieldUpdate}

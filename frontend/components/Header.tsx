@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
-import { blue, grey, red } from '@mui/material/colors';
+import { blue, grey } from '@mui/material/colors';
 
 const headerStyle = {
     backgroundColor: blue["A100"],
