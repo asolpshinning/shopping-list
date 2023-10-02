@@ -1,21 +1,21 @@
-import { blue, grey } from "@mui/material/colors";
+import { grey } from "@mui/material/colors";
 
 const container = {
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 560,
     bgcolor: 'background.paper',
+    borderBottom: `5px solid #4D81B7`,
+    width: 560,
     boxShadow: 24,
-    borderBottom: `5px solid ${blue["A100"]}`,
 };
 
 const header = {
     display: 'flex',
     justifyContent: 'space-between',
-    backgroundColor: blue["A100"],
-    color: 'white',
+    backgroundColor: "#ffffff",
+    color: 'black',
     paddingY: 2,
     paddingLeft: 4,
     paddingRight: 3.25,
@@ -23,10 +23,10 @@ const header = {
     letterSpacing: '0.25px',
     fontSize: 18,
     fontWeight: 600,
-    borderBottom: `1px solid ${blue["A100"]}`,
+    borderBottom: `1px solid ${grey[300]}`,
 };
 
-const headerIcon = { color: 'white' };
+const headerIcon = { color: 'black' };
 
 const padding = {
     paddingY: 2,
@@ -38,19 +38,22 @@ const primaryText = {
     fontFamily: 'Nunito',
     fontSize: 18,
     fontWeight: 400,
-    color: blue[500],
+    color: 'black',
     lineHeight: '24px',
 };
 
 const secondaryText = {
-    fontFamily: 'sans-serif',
+    fontFamily: 'Nunito',
     fontSize: 16,
     fontWeight: 400,
     color: grey[500],
     lineHeight: '22px',
+    paddingBottom: 1,
 };
 
-const inputText = {};
+const inputText = {
+    color: grey[500],
+};
 
 const footer = {
     display: 'flex',
@@ -73,7 +76,7 @@ const counter = {
     marginY: 1,
     marginX: 1.5,
     fontSize: '12px',
-    color: blue[500],
+    color: 'black',
 };
 
 export default {

@@ -19,11 +19,11 @@ export const useShoppingState = () => {
             quantity: 0,
             purchased: false,
         };
-        setShoppingState({ ...shoppingState, itemActionType: 'add', isItemModalOpen: true, currentItem, comment: "addItemButtonClicked" });
+        setShoppingState({ ...shoppingState, itemActionType: 'add', isItemModalOpen: true, currentItem });
     };
 
     const handleClickEdit = (currentItem: ShoppingItem) => {
-        setShoppingState({ ...shoppingState, itemActionType: 'edit', currentItem, isItemModalOpen: true, comment: "clickEditButton" });
+        setShoppingState({ ...shoppingState, itemActionType: 'edit', currentItem, isItemModalOpen: true });
     };
 
 
@@ -35,7 +35,7 @@ export const useShoppingState = () => {
         setShoppingState({ ...shoppingState, currentItem: null, isItemModalOpen: false });
     };
 
-    const handleItemFieldUpdate = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleItemFieldChange = (e: ChangeEvent<HTMLInputElement>) => {
         let updatedItem = { ...shoppingState.currentItem };
         let { value, name, checked, type } = e.target;
         if (name === 'purchased') {
@@ -69,7 +69,7 @@ export const useShoppingState = () => {
         handleClickEdit,
         handleClickDelete,
         closeAddItem,
-        handleItemFieldUpdate,
+        handleItemFieldChange,
         handleItemModalClose,
         handleDeleteModalClose,
     };

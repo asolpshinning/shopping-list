@@ -54,16 +54,19 @@ const ItemModal: React.FC<ItemModalProps> = ({
             <Modal open={reveal} onClose={onExit}>
                 <Box sx={styles.container}>
                     <Box sx={styles.header}>
-                        <Typography sx={{ fontFamily: 'monospace' }}>
-                            {actionTypeLabels.primaryText[actionType]}
+                        <Typography sx={{ fontFamily: 'Nunito' }}>
+                            SHOPPING LIST
                         </Typography>
                         <LastPageIcon sx={styles.headerIcon} onClick={onExit} />
                     </Box>
                     <Box sx={styles.padding}>
+                        <Typography sx={styles.primaryText}>
+                            {actionTypeLabels.primaryText[actionType]}
+                        </Typography>
                         <Typography sx={styles.secondaryText}>
                             {actionTypeLabels.secondaryText[actionType]}
                         </Typography>
-                        <Box>
+                        <Box sx={{ paddingBottom: 15 }}>
                             <TextField
                                 error={validations?.name?.error}
                                 helperText={validations?.name?.errorText}
@@ -76,8 +79,9 @@ const ItemModal: React.FC<ItemModalProps> = ({
                                     sx: styles.inputText,
                                     name: 'name',
                                 }}
+                                sx={{ paddingBottom: 2 }}
                             />
-                            <Box>
+                            <Box sx={{ position: 'relative' }}>
                                 <TextField
                                     placeholder="Description"
                                     variant="outlined"
@@ -119,7 +123,7 @@ const ItemModal: React.FC<ItemModalProps> = ({
                             ) : null}
                         </Box>
                     </Box>
-                    <Box>
+                    <Box sx={styles.footer}>
                         <Button variant="text" onClick={onExit}>
                             Cancel
                         </Button>

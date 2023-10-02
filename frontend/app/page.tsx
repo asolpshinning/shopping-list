@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import { ItemModal, DeleteItemModal, Spinner, EmptyList, Header, ShoppingList } from '@/components';
 import useShoppingData from '@/hooks/useShoppingData';
 import useShoppingState from '@/hooks/useShoppingState';
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 
 const Home = () => {
 
@@ -18,7 +18,7 @@ const Home = () => {
     handleClickAddItem,
     handleClickEdit,
     handleClickDelete,
-    handleItemFieldUpdate,
+    handleItemFieldChange,
     handleItemModalClose,
     handleDeleteModalClose } = useShoppingState()
 
@@ -32,15 +32,16 @@ const Home = () => {
     handleDeleteModalClose();
   }
 
-
-
-
   return (
     <Box>
       <Header />
       <Box sx={{ display: 'flex', alignIntems: 'center', justifyContent: 'center' }}>
         <EmptyList reveal={(!shoppingData.items || (shoppingData.items && shoppingData.items.length === 0)) && !shoppingData.loading} onClickAddItem={() => handleClickAddItem(shoppingData)}>
-          <Button variant='contained' onClick={() => handleClickAddItem(shoppingData)} sx={{ marginTop: 2 }}>Add Your First Item</Button>
+          <Button variant='contained' onClick={() => handleClickAddItem(shoppingData)} sx={{ marginTop: 2 }}>
+            <Typography sx={{ textTransform: "none" }}>
+              Add Your First Item
+            </Typography>
+          </Button>
         </EmptyList>
         <Spinner loading={shoppingData.loading} />
         <ShoppingList
@@ -57,7 +58,7 @@ const Home = () => {
           onExit={handleItemModalClose}
           item={shoppingState.currentItem}
           validations={shoppingState.currentItemValidations}
-          onFieldChange={handleItemFieldUpdate}
+          onFieldChange={handleItemFieldChange}
           onSave={handleItemSave}
         />
         <DeleteItemModal
