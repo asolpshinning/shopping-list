@@ -1,20 +1,31 @@
 import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
-import { blue, grey } from '@mui/material/colors';
 
 const headerStyle = {
-    backgroundColor: blue["A100"],
+    backgroundColor: "#4D81B7",
     paddingY: 2.5,
     paddingX: 3.5,
     textTransform: 'uppercase',
     fontSize: 20,
     fontWeight: 550,
     letterSpacing: '0.25px',
+    height: '64px',
+
 };
+
+const textStyle = {
+    fontFamily: 'Dosis',
+    fontSize: '18px',
+    fontWeight: 600,
+    lineHeight: '23px',
+    letterSpacing: '0.25px',
+    textAlign: 'left',
+    color: '#FFFFFF'
+}
 
 const Header = () => (
     <Box component="header" sx={headerStyle}>
-        <Typography sx={{ fontFamily: "monospace", fontSize: 22, color: grey[50] }}>
+        <Typography sx={textStyle}>
             Shopping List
         </Typography>
     </Box>

@@ -6,7 +6,8 @@ const containedButtonStyle = {
     textTransform: 'unset',
     fontFamily: 'sans-serif',
     fontWeight: 600,
-    backgroundColor: 'blue',
+    backgroundColor: '#1871E8',
+    borderRadius: '4px',
 };
 
 const textButtonStyle = {

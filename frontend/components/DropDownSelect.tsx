@@ -3,6 +3,8 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
+import Fade from '@mui/material/Fade';
+import { grey } from "@mui/material/colors";
 
 const generateNumberArrayUpToAmount = (amount: number): number[] => {
     const arr: number[] = [];
@@ -42,8 +44,18 @@ const DropDownSelect: React.FC<DropDownSelectProps> = ({
                 id="item-amount-select"
                 value={String(selValue)}
                 inputProps={{
-                    sx: { color: 'black' },
+                    sx: { color: grey[500] },
                     name: 'quantity',
+                }}
+                MenuProps={{
+                    TransitionComponent: Fade,
+                    transitionDuration: 200,
+                }}
+                sx={{
+                    '& .MuiPaper-root': {
+                        animationTimingFunction: 'ease-out',
+                        animationDuration: '200ms'
+                    }
                 }}
                 onChange={handleChange}
             >

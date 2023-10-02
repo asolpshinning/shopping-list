@@ -1,20 +1,21 @@
+import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
-import { grey } from '@mui/material/colors';
 
 const containerStyle = {
-    border: 1,
-    borderRadius: 1,
-    borderColor: grey[400],
-    color: grey,
+    width: '614px',
+    height: '290px',
+    top: '174px',
+    left: '333px',
+    borderRadius: '5px',
+    border: '1px solid #C6C6C6',
+    backgroundColor: 'linear-gradient(0deg, #C6C6C6, #C6C6C6), linear-gradient(0deg, #FFFFFF, #FFFFFF)',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    fontFamily: 'Nunito',
-    minWidth: 600,
-    fontSize: 15,
     paddingTop: 10,
     paddingBottom: 15,
-};
+    minWidth: 600,
+}
 
 type EmptyListProps = {
     reveal: boolean;
@@ -27,7 +28,21 @@ const EmptyList: React.FC<EmptyListProps> = ({ reveal = false, msg = 'Your shopp
     reveal ?
         <Box sx={{ marginTop: 20 }}>
             <Box sx={containerStyle}>
-                <Box>{msg}</Box>
+                <Box>
+                    <Typography sx={{
+                        fontFamily: 'Nunito',
+                        fontSize: '18px',
+                        fontWeight: 400,
+                        lineHeight: '24px',
+                        letterSpacing: '-1.3038520263464193e-9px',
+                        textAlign: 'center'
+                    }}
+                        variant="h2"
+                    >
+
+                        {msg}
+                    </Typography>
+                </Box>
                 {children}
             </Box>
         </Box>

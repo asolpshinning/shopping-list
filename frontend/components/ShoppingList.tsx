@@ -40,7 +40,7 @@ const ShoppingList: React.FC<ShoppingListProps> = ({
                                 onEdit={() => onClickEdit(item)}
                                 onDelete={() => onClickDelete(item)}
                                 checked={item.purchased}
-                                primaryText={item.name}
+                                primaryText={item.name + " (" + item.quantity + ")"}
                                 secondaryText={item.description}
                             />
                         );
