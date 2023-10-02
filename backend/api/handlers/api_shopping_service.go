@@ -56,6 +56,7 @@ func (s *ShoppingAPIService) PatchItem(ctx context.Context, itemID float32, patc
 		Name:        patchItemRequest.Name,
 		Description: patchItemRequest.Description,
 		Quantity:    patchItemRequest.Quantity,
+		Purchased:   patchItemRequest.Purchased,
 	}
 	err := s.svc.EditShoppingItem(ctx, itemToPatch)
 	if err != nil {

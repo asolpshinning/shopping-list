@@ -7,14 +7,15 @@ import (
 )
 
 var (
-	DB                = "testdb"         // Get("DB")
-	DB_USER           = "testuser"       // Get("DB_USER")
-	DB_PASSWORD       = "testpassword"   // Get("DB_PASSWORD")
-	DB_HOST           = "localhost:5432" // Get("DB_HOST")
-	DB_SHOPPING_TABLE = "shopping_list"  // Get("DB_REG_TABLE")
+	DB                = Get("DB")
+	DB_USER           = Get("DB_USER")
+	DB_PASSWORD       = Get("DB_PASSWORD")
+	DB_HOST           = Get("DB_HOST")
+	DB_SHOPPING_TABLE = Get("DB_SHOPPING_TABLE")
 
-	SERVER_PORT         = "8080" // Get("SERVER_PORT")
-	NUM_ALLOWED_ORIGINS = "0"    // Get("NUM_ALLOWED_ORIGINS")
+	SERVER_PORT         = Get("SERVER_PORT")
+	NUM_ALLOWED_ORIGINS = Get("NUM_ALLOWED_ORIGINS")
+	ALLOWED_ORIGIN_1    = Get("ALLOWED_ORIGIN_1")
 )
 
 func ALLOWED_ORIGIN_(i int) string {
@@ -28,9 +29,8 @@ func ALLOWED_ORIGINS() ([]string, error) {
 	}
 	var allowedOrigins []string
 	for i := 0; i < numberAllowedOrigins; i++ {
-		allowedOrigins = append(allowedOrigins, ALLOWED_ORIGIN_(i))
+		allowedOrigins = append(allowedOrigins, ALLOWED_ORIGIN_(i+1))
 	}
-	allowedOrigins = append(allowedOrigins, "http://localhost:3000")
 	return allowedOrigins, nil
 }
 
